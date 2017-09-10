@@ -113,14 +113,15 @@ public class SyncThreadTest {
 此时出现了非线程安全问题，因为两个线程同时访问一个没有同步的方法，如果这两个线程同时操作业务对象中的实例变量，就有可能出现非线程安全问题。
 解决方案：只需要在public void run()前面加synchronized关键词即可。
 
-三、使用同步时的方案
-(1).同步synchronized方法 
+三、使用同步时的方案<br/>
+(1)同步synchronized方法 <br/>
     即有synchronized关键字修饰的方法。 
     由于java的每个对象都有一个内置锁，当用此关键字修饰方法时， 
     内置锁会保护整个方法。在调用该方法前，需要获得内置锁，否则就处于阻塞状态。
     代码如： 
     public synchronized void save(){}
     注： synchronized关键字也可以修饰静态方法，此时如果调用该静态方法，将会锁住整个类
+
 
 public class Bank {
 
@@ -167,7 +168,7 @@ public class Bank {
 
 这样就实现了线程同步。
  
-(2).同步synchronized代码块 
+(2).同步synchronized代码块 <br>
     即有synchronized关键字修饰的语句块。 
     被该关键字修饰的语句块会自动被加上内置锁，从而实现同步 
     代码如： 
@@ -175,6 +176,7 @@ public class Bank {
     }
      注：同步是一种高开销的操作，因此应该尽量减少同步的内容。 
     通常没有必要同步整个方法，使用synchronized代码块同步关键代码即可。 
+
 
 public class Bank {
     private int count =0;//账户余额
@@ -201,6 +203,7 @@ public class Bank {
         System.out.println("账户余额："+count);
     }
 }
+
 
 运行结果：
 
